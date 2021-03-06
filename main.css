@@ -16,6 +16,10 @@
     --font-size-body: 0.875rem;
     --font-size-btn: 1rem;
 }
+.flex {
+    display: flex;
+}
+
 /****************
 Typography 
 ****************/
@@ -34,30 +38,50 @@ h1 {
 
 h2 {
     font-size: 1.125rem;
-    line-height: 22.01px;
-    margin-bottom: 24px;
-    
-    
+    line-height: 22.01px;    
 }
 
 h3 {
     font-weight: 700;
-    margin-bottom: 8px;
+    /* margin-bottom: 8px; */
 }
 
 h4 {
    font-weight: 500; 
    color: var(--primary-moderate-cyan);
-   margin-bottom: 24px;
 }
 
 p {
-    margin-bottom: 24px;
+    margin: 24px 0;
     color: #7A7A7A;
     line-height: 24px;
     
 }
 
+/****************
+Buttons
+****************/
+
+.btn {
+    font-size: calc(var(--btn-scale) * 1rem);
+    background-color: var(--primary-moderate-cyan);
+    padding: 1em 2.1em;
+    border-radius: 50px;
+    text-decoration: none;
+    color: white;
+    font-weight: 700;
+    border-style: none;
+
+   }
+
+
+
+.btn-sm {
+    --btn-scale: 0.8;
+}
+.btn-lrg {
+ --btn-scale: 1.4;
+}
 
 
 /****************
@@ -65,6 +89,7 @@ Navigation
 ****************/
 body {
     background-color: var(--neutral-light-gray);
+    /* overflow:hidden; */
 }
 
 header {
@@ -126,23 +151,6 @@ main {
 }
 
 
-
-.btn {
- background-color: var(--primary-moderate-cyan);
- width: 214px;
- height: 56px;
- padding: 0 15px;
- border-radius: 50px;
- text-decoration: none;
- color: white;
- font-weight: 700;
- font-size: var(--font-size-btn);
- border-style: none;
- margin-right: 9px;
-}
-
-
-
 /****************
 Project Stats
 ****************/
@@ -173,7 +181,7 @@ Project Stats
 }
 
 
-hr {
+.stat-line {
     width: 30%;
     text-align: center;
     margin-bottom: 24px;
@@ -201,10 +209,10 @@ border-radius: 8px;
 Project About
 ****************/
 
-.project-about {
+.card-container {
     background: var(--neutral-white);
     width: 90%;
-    padding: 40px 30px;
+    padding: 40px 24px;
     margin: 0 auto;
     border-radius: 8px;
     border: 1px solid rgba(0, 0, 0, 0.0497193);
@@ -222,30 +230,30 @@ Cards
     background: var(--neutral-white);
     border: 1px solid rgba(0, 0, 0, 0.15);
     border-radius: 8px;
-    height: 100%;
+    /* height: 100%; */
     margin: 24px 0;
-    padding: 24px ;
+    padding: 24px;
 }
 
 .card p {
     margin-bottom: 24px;
 }
 
-.amount-left span {
+.amount-left-stat span {
     font-size: 2rem;
     color: var(--neutral-black);
     font-weight: 700; 
     margin-right: 8px;
 }
 
-.amount-left p {
+.amount-left-stat p {
     font-size: 1rem;
     color: #7A7A7A;
     font-weight: 400;
     margin: 0;
 }
 
-.amount-left {
+.amount-left-stat {
     margin-bottom:24px;
     display: flex;
     align-items: center;
@@ -267,3 +275,183 @@ Cards
 Modals
 ****************/
 
+.modal-hide {
+    display: none;
+}
+
+.modal {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    overflow: auto;
+}
+
+.modal-content {
+    z-index: 2;
+    margin: 30% auto;
+}
+/* Modal - Card Top */
+
+.modal-content-title {
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 24px;
+}
+.modal-card-top {
+    align-items: center;
+}
+.amount-left-modal span {
+    font-size: 18px;
+    color: var(--neutral-black);
+    font-weight: 700; 
+    margin-right: 8px;
+}
+
+.amount-left-modal p { 
+    margin: 0;
+}
+
+.amount-left-modal {
+ display: flex; 
+ align-items: center;
+ margin-bottom: 24px;
+
+}
+.radio{
+    display: inline-flex;
+    align-items: center;
+    cursor: pointer;   
+}
+
+.radio-input {
+    display: none;
+} 
+
+.radio-radio {
+    min-width: 1.7em;
+    height: 1.7em;
+    border-radius: 50%;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    margin-right: 16px;
+    padding: 4px;
+   
+}
+
+.radio-radio::after {
+    content: "";
+    width: 100%;
+    height: 100%;
+    display: block;
+    border-radius: 50%;
+    background-color: var(--primary-moderate-cyan);
+    transition: transform 0.12s ease-in-out;
+    transform: scale(0);
+}
+
+.radio-input:checked + .radio-radio::after {
+    transform: scale(1);
+}
+input[type='radio']:disabled {
+    pointer-events: none;
+}
+/* Modal- Card Bottom */
+
+.modal-card hr {
+    border: 0;
+    border-top: 1px solid rgba(0,0,0,0.15);
+    margin: 0 -24px;
+}
+
+.modal-card-btm { 
+    text-align: center;
+   
+}
+
+.modal-card-pledge {
+    justify-content: space-between;
+    align-items: center;    
+}
+
+.pledge-input {
+    width: 100px;
+    padding: 14px 15px 15px 42px;
+    border: 0;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 33.5px;
+    margin-right: 16px;
+    color: var(--neutral-black);
+    font-size: 14px;
+    font-weight: 700;
+    text-decoration: none;
+    
+}
+
+.pledge-input-container {
+    
+    height: 48px;
+    width: 100px;
+    padding: 0;
+    position: relative;
+    
+   
+}
+
+.pledge-dollar-sym {
+    position: absolute;
+
+    transform: translate(0,-50%);
+    top: 50%;
+    left: 20%;
+    font-weight: 700;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.25);
+
+}
+
+.pledge-input:focus {
+    outline: none;
+    border:  2px solid hsl(176, 50%, 47%);
+    padding: 13px 15px 15px 41px;
+}
+
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
+/* Modal- Confirmation */
+
+
+.confirmation-content {
+    text-align: center;
+    margin: 35% auto;
+    width: 90%;
+}
+.confirmation-content svg {
+    margin: 6px 0 24px;
+}
+
+.confirmation-content p {
+    margin-top: 16px;
+}
+.confirmation-content .btn {
+    margin-bottom: 16px;
+}
+
+
+
+@media screen and (max-width: 374px) {
+
+.modal-card-pledge {
+    flex-direction: column;
+    margin: 0 auto;
+    
+}
+
+
+}
