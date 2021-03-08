@@ -23,6 +23,7 @@
 /****************
 Typography 
 ****************/
+
 body {
     color: var(--neutral-black);
     font-size: var(--font-size-body);
@@ -63,24 +64,23 @@ Buttons
 ****************/
 
 .btn {
-    font-size: calc(var(--btn-scale) * 1rem);
+    font-size: 1rem;
     background-color: var(--primary-moderate-cyan);
-    padding: 1em 2.1em;
+    padding: 1.2em 2.84em;
     border-radius: 50px;
     text-decoration: none;
     color: white;
     font-weight: 700;
     border-style: none;
-
-   }
-
-
+}
 
 .btn-sm {
-    --btn-scale: 0.8;
+    font-size: 0.875rem;
+    padding: 1em 2em;
+
 }
 .btn-lrg {
- --btn-scale: 1.4;
+ --btn-scale: 1;
 }
 
 
@@ -96,22 +96,74 @@ header {
 height: 300px;
 width: 100%;
 background: linear-gradient(180deg, rgba(0,0,0,.7) 0%, rgba(0,0,0,0) 57%), url(images/image-hero-mobile.jpg);
-padding: 30px 30px;
+padding: 30px 24px;
 background-size: cover;
 background-position: center center;
 margin: auto;
 position: relative;
 text-align: center;
-z-index: -1;
+
 }
 
-.navigation-container {
+.brand-logo, nav svg {
+    z-index: 2;
+}
+
+
+nav {
     display: flex;
     justify-content: space-between;
+
 }
-nav ul {
+
+.nav-list {
+    display: flex;
+    flex-direction: column;
+    margin: 80px auto;
+    position: absolute;
+    right: 5%;
+    background: var(--neutral-white);
+    border-radius: 8px;
+    z-index: 3;
+    width: 90%;
+    text-align: left;
+}
+
+.nav-item {
+    font-size: 1.125rem;
+    padding: 23.5px 0 23.5px 24px;
+    border-top: 1px solid rgba(47,47,47,0.1);
+    margin: 0;
+    list-style: none;
+}
+
+
+.nav-item a {
+    text-decoration: none;
+    color: var(--neutral-black);
+}
+
+
+
+/* 
+.modal {
+    position: fixed;
+    height: 100%;
+    width: 100%;
+    left: 0;
+    top: 0;
+    background: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    overflow: auto;
+}
+
+.modal-content {
+    z-index: 2;
+    margin: 30% auto;
+} */
+/* nav ul {
     display: none;
-}
+} */
 
 /****************
 Main
@@ -130,6 +182,7 @@ main {
     margin: -56px auto 24px auto;
     height: auto;
     width: 90%;
+    z-index: 0;
     border: 1px solid rgba(0, 0, 0, 0.0497193);
 }
 .project-logo {
@@ -137,6 +190,7 @@ main {
     top: -30px;
     width: 56px;
     height: 56px;
+    
 }
 
 
@@ -208,6 +262,9 @@ border-radius: 8px;
 /****************
 Project About
 ****************/
+.project-about__title {
+    margin-bottom: 24px;
+}
 
 .card-container {
     background: var(--neutral-white);
@@ -233,6 +290,13 @@ Cards
     /* height: 100%; */
     margin: 24px 0;
     padding: 24px;
+}
+.card__title {
+    margin-bottom: 8px;
+}
+
+.card__subtitle {
+    margin-bottom: 24px;
 }
 
 .card p {
@@ -445,13 +509,42 @@ input[type=number]::-webkit-outer-spin-button {
 
 
 
-@media screen and (max-width: 374px) {
 
-.modal-card-pledge {
-    flex-direction: column;
-    margin: 0 auto;
+
+
+
+@media screen and (min-width: 800px) {
+
     
-}
+    .nav-list {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        margin: 0px;
+        position: static;
+        color: var(--neutral-white);
+        background: none;
+        z-index: 3;
+        width: 50%;
+        text-align:right;
+    }
+    
+    .nav-item {
+        font-size: 1.125rem;
+        padding: 0;
+        color: white;
+        border-top: none;
+        margin: 0;
+        list-style: none;
+    }
 
+    .nav-item a {
+        color: var(--neutral-white);
+        margin-left: 15px ;
+    }
+
+    .burger {
+        display: none;
+    }
 
 }
