@@ -45,10 +45,10 @@
     <div class="burger">
     <svg width="16" height="15" xmlns="http://www.w3.org/2000/svg"><g fill="#FFF" fill-rule="evenodd"><path d="M0 0h16v3H0zM0 6h16v3H0zM0 12h16v3H0z"/></g></svg>
     </div>
-
+    
     </nav>
     
-  </div>
+    <div class="mobile-nav-bg hide"></div>
   </header>
 
 
@@ -75,7 +75,9 @@
         <div class="overview-cta">
           <button class="btn">Back this project</button>
           <div class="bookmark-icon">
+            
             <svg width="56" height="56" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><circle fill="#2F2F2F" cx="28" cy="28" r="28"/><path fill="#B1B1B1" d="M23 19v18l5-5.058L33 37V19z"/></g></svg>
+            
           </div>
         </div>
   </main>
@@ -84,15 +86,18 @@
         <span>$89,914</span>
         <p>of $100,000 backed</p>
       </div>
-      <hr class="stat-line">
+      <div class="line"></div>
+
         <div class="stat">
           <span>5,007</span>
           <p>total backers</p>
         </div>
-          <hr class="stat-line">
+        <div class="line"></div>
+
             <div class="stat">
               <span>56</span>
               <p>days left</p>
+              
             </div>
       <div class="progress"></div>
     </div>
@@ -102,39 +107,50 @@
     <p>The Mastercraft Bamboo Monitor Riser is a sturdy and stylish platform that elevates your screen 
       to a more comfortable viewing height. Placing your monitor at eye level has the potential to improve 
       your posture and make you more comfortable while at work, helping you stay focused on the task at hand.
-    
+    <br><br>
       Featuring artisan craftsmanship, the simplicity of design creates extra desk space below your computer 
       to allow notepads, pens, and USB sticks to be stored under the stand.</p>
       <div class="card">
+        <div class="card-text-top">
         <h3 class="card__title">Bamboo Stand</h3>
         <h4 class="card__subtitle">Pledge $25 or more</h4>
+        </div>
         <p>You get an ergonomic stand made of natural bamboo. You've helped us launch our promotional campaign, and 
           you’ll be added to a special Backer member list.</p>
-       
+          <div class="card-bottom">
           <div class="amount-left amount-left-stat"><span>101</span><p>left</p></div>
         <button href="#" class="btn btn-card">Select Reward</button>
       </div>
+      </div>
       <div class="card">
+        <div class="card-text-top">
         <h3 class="card__title">Black Edition Stand</h3>
         <h4 class="card__subtitle">Pledge $75 or more</h4>
+        </div>
         <p>You get a Black Special Edition computer stand and a personal thank you. You’ll be added to our Backer 
           member list. Shipping is included.</p>
+          <div class="card-bottom">
           <div class="amount-left amount-left-stat"><span>64</span><p>left</p></div>
         <button href="#" class="btn btn-card">Select Reward</button>
       </div>
+      </div>
       <div class="card no-stock">
+        <div class="card-text-top">
         <h3 class="card__title">Mahogany Special Edition</h3>
         <h4 class="card__subtitle">Pledge $200 or more</h4>
+        </div>
         <p>You get two Special Edition Mahogany stands, a Backer T-Shirt, and a personal thank you. You’ll be added 
           to our Backer member list. Shipping is included.</p>
+          <div class="card-bottom">
           <div class="amount-left-stat"><span>0</span><p>left</p></div>
         <button href="#" class="btn btn-card">Out of Stock</button>
+      </div>
       </div>
   </section>
 
 <!-------Modal------->
 
-  <div class="modal modal-hide ">
+  <div class="modal modal-hide">
       <div class="modal-content card-container">
         <div class="modal-content-title flex">
           <h2>Back this project</h2>
@@ -157,7 +173,7 @@
                 </label>                             
               </div>
 
-              <p>Choose to support us without a reward if you simply believe in our project. As a 
+              <p class="modal-card__body">Choose to support us without a reward if you simply believe in our project. As a 
               backer, you will be signed up to receive product updates via email.</p>
               
                 <hr>
@@ -188,7 +204,7 @@
               </label>                             
             </div>
 
-            <p> You get an ergonomic stand made of natural bamboo. You've helped us launch our
+            <p class="modal-card__body"> You get an ergonomic stand made of natural bamboo. You've helped us launch our
             promotional campaign, and you’ll be added to a special Backer member list.</p>
             
             <div class="amount-left-modal"><span>101</span><p>left</p></div>
@@ -220,7 +236,7 @@
             </label>                             
           </div>
 
-          <p>You get a Black Special Edition computer stand and a personal thank you. You’ll be 
+          <p class="modal-card__body">You get a Black Special Edition computer stand and a personal thank you. You’ll be 
             added to our Backer member list. Shipping is included.</p>
           
           <div class="amount-left-modal"><span>64</span><p>left</p></div>
@@ -253,7 +269,7 @@
           </label>                             
         </div>
 
-        <p>You get two Special Edition Mahogany stands, a Backer T-Shirt, and a personal thank you.
+        <p class="modal-card__body">You get two Special Edition Mahogany stands, a Backer T-Shirt, and a personal thank you.
            You’ll be added to our Backer member list. Shipping is included.</p>
         
         <div class="amount-left-modal"><span>0</span><p>left</p></div>
@@ -262,8 +278,8 @@
               <p>Enter your pledge</p>
                 <div class="modal-card-pledge flex">
                   <div class="pledge-input-container">
-                    <label for="pledgeOne" class="pledge"><span class="pledge-dollar-sym">$</span></label>
-                      <input type="number" name="pledgeField" id="pledgeOne" value="200" class="pledge-input">
+                    <label for="pledgeFour" class="pledge"><span class="pledge-dollar-sym">$</span></label>
+                      <input type="number" name="pledgeField" id="pledgeFour" value="200" class="pledge-input">
                   </div>
                     <button class="btn btn-sm" name="pledgeField" type="submit">Continue</button>
                 </div>
@@ -272,7 +288,6 @@
          </form>
       </div>
    </div>
-
             <div class="modal confirmation-modal modal-hide">
             <div class="card confirmation-content">
               <svg width="64" height="64" xmlns="http://www.w3.org/2000/svg"><g fill="none" fill-rule="evenodd"><circle fill="#3CB3AB" cx="32" cy="32" r="32"/><path stroke="#FFF" stroke-width="5" d="M20 31.86L28.093 40 44 24"/></g></svg>

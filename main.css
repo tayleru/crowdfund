@@ -19,6 +19,13 @@
 .flex {
     display: flex;
 }
+html {
+    scroll-behavior: smooth;
+  }
+
+  .hide {
+      display: none;
+  }
 
 /****************
 Typography 
@@ -106,14 +113,28 @@ text-align: center;
 }
 
 .brand-logo, nav svg {
-    z-index: 2;
+    z-index: 6;
 }
 
 
 nav {
     display: flex;
     justify-content: space-between;
+    
 
+}
+
+.mobile-nav-bg {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    height: 100vh;
+    width: 100%;
+    background: linear-gradient(180deg, #000000 0%, rgba(0, 0, 0, 0.0001) 100%);
+    opacity: 0.6;
+    z-index: 5;
 }
 
 .nav-list {
@@ -124,7 +145,7 @@ nav {
     right: 5%;
     background: var(--neutral-white);
     border-radius: 8px;
-    z-index: 3;
+    z-index: 7;
     width: 90%;
     text-align: left;
 }
@@ -135,14 +156,19 @@ nav {
     border-top: 1px solid rgba(47,47,47,0.1);
     margin: 0;
     list-style: none;
+    z-index: 9;
 }
 
 
 .nav-item a {
     text-decoration: none;
     color: var(--neutral-black);
+    
 }
 
+.burger {
+    z-index: 6;
+}
 
 
 /* 
@@ -181,7 +207,7 @@ main {
     position: relative;
     margin: -56px auto 24px auto;
     height: auto;
-    width: 90%;
+    max-width: 90%;
     z-index: 0;
     border: 1px solid rgba(0, 0, 0, 0.0497193);
 }
@@ -224,6 +250,25 @@ Project Stats
     border: 1px solid rgba(0, 0, 0, 0.0497193);
 }
 
+
+.stat {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: 24px;
+}
+
+.line {
+    height: 1px;
+    width: 80px;
+    background: var(--neutral-black);
+    opacity: 0.15;
+
+
+}
+
+
+
 .stat span {
     font-size: 1.7rem;
     font-weight: 600;
@@ -231,15 +276,13 @@ Project Stats
     margin-bottom: 9px;
     display: block;
     color: var(--neutral-black);
-
+}
+.stat p {
+    margin: 0;
 }
 
 
-.stat-line {
-    width: 30%;
-    text-align: center;
-    margin-bottom: 24px;
-}
+
 
 .progress {
     background: #f4f4f4;
@@ -356,7 +399,14 @@ Modals
 
 .modal-content {
     z-index: 2;
-    margin: 30% auto;
+    margin: 150px auto;
+}
+.modal-card {
+    overflow: hidden;
+}
+.modal-card-wrapper {
+    display: flex;
+    flex-direction: row;
 }
 /* Modal - Card Top */
 
@@ -367,6 +417,7 @@ Modals
 }
 .modal-card-top {
     align-items: center;
+    display: flex;
 }
 .amount-left-modal span {
     font-size: 18px;
@@ -422,12 +473,15 @@ Modals
 input[type='radio']:disabled {
     pointer-events: none;
 }
+
+
 /* Modal- Card Bottom */
 
 .modal-card hr {
     border: 0;
     border-top: 1px solid rgba(0,0,0,0.15);
-    margin: 0 -24px;
+    margin: 0 -40px;
+
 }
 
 .modal-card-btm { 
@@ -451,6 +505,7 @@ input[type='radio']:disabled {
     font-size: 14px;
     font-weight: 700;
     text-decoration: none;
+    caret-color: var(--primary-moderate-cyan);
     
 }
 
@@ -494,7 +549,7 @@ input[type=number]::-webkit-outer-spin-button {
 .confirmation-content {
     text-align: center;
     margin: 35% auto;
-    width: 90%;
+    max-width: 90%;
 }
 .confirmation-content svg {
     margin: 6px 0 24px;
@@ -515,7 +570,14 @@ input[type=number]::-webkit-outer-spin-button {
 
 @media screen and (min-width: 800px) {
 
-    
+    header {
+        background: linear-gradient(180deg, rgba(0,0,0,.7) 0%, rgba(0,0,0,0) 57%), url(images/image-hero-desktop.jpg);
+        background-size: cover;
+    }
+    nav {
+        max-width: 1109px;
+        margin: 0 auto;
+    }
     .nav-list {
         display: flex;
         flex-direction: row;
@@ -530,7 +592,7 @@ input[type=number]::-webkit-outer-spin-button {
     }
     
     .nav-item {
-        font-size: 1.125rem;
+        font-size: 0.8125rem;
         padding: 0;
         color: white;
         border-top: none;
@@ -540,11 +602,113 @@ input[type=number]::-webkit-outer-spin-button {
 
     .nav-item a {
         color: var(--neutral-white);
-        margin-left: 15px ;
+        margin-left: 33px ;
+
     }
 
     .burger {
         display: none;
     }
 
+    main {
+       padding: 56px 48px 48px;
+        max-width: 730px;
+        
+    }
+
+    main p {
+        margin-top: 0px;
+    }
+    .project-stats {
+        max-width: 730px;
+        padding: 48px;
+        flex-direction: row;
+        flex-wrap: wrap;
+    }
+    .stat {
+        text-align: left;
+        margin: 0px 42px 37px 47px;
+    }
+    .stat:first-child {
+        margin-left: 0;
+    }
+
+    .line {
+        width: 1px;
+        height: 63px;
+        margin-bottom: 40px;
+    }
+
+    .card-container {
+        padding: 48px;
+        max-width: 730px;
+    }
+
+    .card {
+        padding: 38px 32px 32px 32px;
+    }
+    .card-text-top {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 24px;;
+
+    }
+    .card p {
+        font-size: 1rem;
+    }
+    .card__subtitle, .card__title {
+        font-size: 1.125rem;
+        margin-bottom: 0;
+    }
+    .card-bottom {
+        display: flex;
+        justify-content: space-between;
+    }
+    .amount-left-stat {
+        margin-bottom: 0px;
+    }
+    .modal-card-top {
+        align-items: center;  
+    }
+    .modal-card__body {
+        margin-left: 40px;
+    }
+    .modal-card {
+        position: relative;
+    }
+    .amount-left-modal {
+        position: absolute;
+        top: 30px;
+        right: 28px;
+    }
+
+    .modal-card-top-text {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+    .modal-card h4 {
+        margin-left: 16px;
+    }
+
+    .modal-card-btm {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-top: 30px;
+       
+    }
+    .modal-card-btm p {
+     margin: 12px 0 12px 0;
+    }
+    .pledge-input-container {
+    margin-right: 16px;
+    }
+
+    .confirmation-content {
+        max-width: 730px;
+        margin: 25% auto;
+    }
+
+  
 }
