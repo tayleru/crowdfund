@@ -1,15 +1,21 @@
 
-    let amountBacked = 89914
+    let amountBacked = 20978
+    let goal = 100000 
     let totalBackers = 5007
-    let bambooStandInv = 101
-    let blackEdInv = 64
-    let MahoganySpecialInv = 0
-        
-    
-    
-    
+
     const radioButtons = document.querySelectorAll('.radio-input')
     const modalBtm = document.querySelectorAll('.modal-card-btm') 
+    const backProjectBtn = document.querySelector('.overview-cta .btn')
+    const overlay = document.querySelector('#overlay')
+    const pledgeModal = document.querySelector('#modal')
+    const selectRewardBtns = document.querySelectorAll('#selectReward')
+    const confirmationBtns = document.querySelectorAll('#confirmation-btn')
+    const gotItBtn = document.querySelector('#gotItBtn')
+    const confirmationModal = document.querySelector('.confirmation-content')
+    const modalCards = document.querySelectorAll('.modal-card')
+   
+
+    //-------------Mobile Nav --------------------//
 
     const mobileNavOpen = () => {
         const burgerMenu = document.querySelector(".burger")
@@ -34,111 +40,111 @@
     
     mobileNavOpen()
 
+   
+// ---------------  Handlers ------------------- //
 
 
-    // Close & Open all Modals//
     
+    const togglePledgeModal = ()=> {
+        pledgeModal.classList.toggle('active')
+        overlay.classList.toggle('active')
+    }
+   
 
-
-
-    const openCloseModal = ()=> {
-        const openModalButtons = document.querySelectorAll('[data-modal-target]')
-        console.log(openModalButtons)
-        const closeModalButtons = document.querySelectorAll('[data-close-button]')
-        console.log(closeModalButtons)
-        
-        const overlay = document.getElementById('overlay')
-        
-        openModalButtons.forEach(button => {
-
-                button.addEventListener('click', event => {
-                    const modal = document.querySelector(button.dataset.modalTarget)
-                    console.log(modal)
-                    openModal(modal)
-                    radioButtons[button.value].checked = true;
-                    radioBtnClickHandler()
-                    window.scrollTo(0,0)
-              
-
- 
-    }) }) 
-        
-         
-        
-
-     overlay.addEventListener('click', ()=> {
-         const modals = document.querySelectorAll('.modal.active')
-         modals.forEach(modal => {
-            closeModal(modal)
-         })
-     })
-
-     closeModalButtons.forEach(button => {
-        button.addEventListener('click', ()=> {
-            const modal = button.closest(".modal")
-            closeModal(modal)
+   const radioButtonHandler = ()=> {
+        radioButtons.forEach(btn => {
+            if(btn.checked) {
+                btn.parentElement.parentElement.parentElement.classList.add('active')
+                btn.parentElement.parentElement.nextElementSibling.nextElementSibling.nextElementSibling.classList.remove('hide')
+                btn.parentElement.parentElement.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.classList.remove('hide')
+            } else {
+                btn.parentElement.parentElement.parentElement.classList.remove('active')
+                btn.parentElement.parentElement.nextElementSibling.nextElementSibling.nextElementSibling.classList.add('hide')
+                btn.parentElement.parentElement.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling.classList.add('hide')
+            }
         })
-    } )
+   }
+  
 
-     function openModal(modal) {
-         if (modal == null) return;
-        modal.classList.add('active')
-        overlay.classList.add('active')
-        
-     }
 
-     function closeModal(modal) {
- 
-        if (modal == null) return;
-       modal.classList.remove('active')
-       overlay.classList.remove('active')
+   const modalCloseHandler = ()=> {
+        const closeBtn = document.querySelector('.close-button')
+        closeBtn.addEventListener('click', togglePledgeModal)
+        overlay.addEventListener('click', togglePledgeModal)
+   }
 
+   modalCloseHandler()
+
+const selectRewardHandler = event => {
+    togglePledgeModal()
+    pledgeToggler(event.currentTarget)
+    window.scrollTo(0,0)
+}
+
+const confirmationHandler = event => {
+    const element = event.currentTarget.previousElementSibling.lastElementChild
+    const value = element.value
+    updateProjectData(value)
+    togglePledgeModal()
+    confirmationModal.classList.add('active')
+    overlay.classList.add('active')
+}
+
+const confirmationClose = ()=> {
+    confirmationModal.classList.remove('active')
+    overlay.classList.remove('active')
+}
+
+const updateProjectData = value => {
+   const totalBacked = document.querySelector('#amount-backed')
+   const progressBar = document.querySelector('.progress-bar')
+  
+    if(value) {
+        amountBacked += +value
+        totalBackers ++ 
     }
+    let percentBacked = amountBacked/goal * 100
+    totalBacked.innerText = `$${amountBacked.toLocaleString()}`
+    progressBar.style.width = `${percentBacked}%`
+    
+}
     
 
+//Event Listeners//
+
+    backProjectBtn.addEventListener('click', togglePledgeModal)
+
+    for (const btn of radioButtons) {
+        btn.addEventListener('click', radioButtonHandler)
+    }
+
+    for (const btn of selectRewardBtns){
+        btn.addEventListener('click', selectRewardHandler)
+    }
+
+    for (const btn of confirmationBtns) {
+        btn.addEventListener('click', confirmationHandler)
+    }
+
+    gotItBtn.addEventListener('click', confirmationClose)
+
+
+
+//-----Helping functions-----//
+
+ const pledgeToggler = element => {
+     const index = getIndexOf(element);
+     radioButtons.item(index + 1).click()
  }
-    
-    openCloseModal()
 
-
-
-  radioBtnClickHandler = ()=> {
-
-            radioButtons.forEach(btn => {
-                const cardDiv = btn.closest('.modal-card')
-                const cardBtm = btn.parentElement.parentElement.nextElementSibling.nextElementSibling.nextElementSibling.nextElementSibling
-                const divLine = btn.parentElement.parentElement.nextElementSibling.nextElementSibling.nextElementSibling
-                
-                if(btn.checked){
-                    cardDiv.classList.add('active')
-                    cardBtm.classList.remove('hide')
-                    divLine.classList.remove('hide')
-
-                } else {
-                    cardDiv.classList.remove('active')
-                    cardBtm.classList.add('hide')
-                    divLine.classList.add('hide')
-                }
-            })
-               
-    
+ const getIndexOf = element => { 
+    let i = 0;
+    for( const btn of selectRewardBtns) {
+        if (btn === element) {
+            return i;
+        } 
+     i++;
     }
-
-    radioButtons.forEach(btn => {
-        btn.addEventListener('click', radioBtnClickHandler)
-    })
-
-
-
-
-   
-   
-
-
-
-
-
-
-
-
+    return i;
+ }
 
